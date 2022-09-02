@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
+import { resolve } from "path";
 const prisma = new PrismaClient();
+import {Request, Response } from 'express';
 
 export const createNewItem = () => {
   prisma.items
@@ -21,6 +23,16 @@ export const getAllItems = (res: any) => {
     res.send(items);
   });
 };
+
+export const getOneItem = async (requestId: number, res: Response) => {
+   const item = await prisma.items.findUnique({
+        where: {
+            id: requestId
+        }
+    })
+
+    return res.send(item);
+}
 
 export const deleteAll = (res: any) => {
   prisma.items.deleteMany().then(() => res.send("deleted everything"));

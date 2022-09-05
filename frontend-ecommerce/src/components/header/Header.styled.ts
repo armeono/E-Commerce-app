@@ -8,13 +8,14 @@ export const HeaderStyled = styled.div`
 
 export const HeaderContent = styled.div`
   margin: 0 auto;
-  width: 70%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
+
 export const HeaderLogo = styled.img`
   height: 60px;
   width: 60px;

@@ -12,7 +12,6 @@ export const SearchStyled = styled.input<SearchType>`
     height: ${({height}) => height ? height : "40px"};
     width: ${({width}) => width ? width : "350px"};
     border: 2px solid ${({theme}) => theme.colors.mainBlue};
-    background-color: ${({theme}) => theme.colors.white};
     border-radius: 4px;
 
     text-indent: 10px;
@@ -31,6 +30,8 @@ export const SearchStyled = styled.input<SearchType>`
     background: ${({icon}) => icon ? `${`url(${SearchIcon})`}` : " "} no-repeat;
     background-size: 25px;
     background-position: 96%;
+
+    background-color: ${({theme}) => theme.colors.white};
 
     
 

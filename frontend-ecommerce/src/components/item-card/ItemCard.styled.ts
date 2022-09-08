@@ -9,3 +9,7 @@ export const ItemCardStyled = styled.div`
     border-radius: 4px;
     box-shadow: 1px 3px 15px rgba(0,0,0, 0.1);
 `
+
+export const CardImage = styled.img`
+    
+`

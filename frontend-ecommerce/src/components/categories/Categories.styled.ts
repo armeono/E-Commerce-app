@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-interface CircleType { 
-    current: boolean
+interface CircleType {
+  current: boolean;
+}
+
+interface ArrowType {
+  left?: boolean;
 }
 
 export const CategoriesStyled = styled.div`
@@ -11,7 +15,6 @@ export const CategoriesStyled = styled.div`
   height: 300px;
   box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
-
 `;
 
 export const CategoriesImage = styled.img`
@@ -51,14 +54,15 @@ export const Circle = styled.div<CircleType>`
   width: 10px;
 
   border-radius: 50%;
-  background: ${({current, theme}) => current ? theme.colors.mainBlue : `transparent`};
+  background: ${({ current, theme }) =>
+    current ? theme.colors.mainBlue : `transparent`};
   border: 2px solid ${({ theme }) => theme.colors.mainBlue};
 `;
-export const ArrowContainer = styled.img`
+export const ArrowContainer = styled.img<ArrowType>`
   position: absolute;
-  right: 10px;
-  top: 115px;
-  height: 60px;
-  width: 60px;
+  right: ${({ left }) => (left ? "1090px" : "10px")};
+  top: ${({ left }) => (left ? "123px" : "115px")};
   cursor: pointer;
+  height: ${({ left }) => (left ? "44px" : "60px")};
+  width: ${({ left }) => (left ? "44px" : "60px")};
 `;

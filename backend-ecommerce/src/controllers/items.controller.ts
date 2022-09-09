@@ -18,7 +18,7 @@ export const createNewItem = () => {
     .then(() => console.log("item created"));
 };
 
-export const getAllItems = (res: any) => {
+export const getAllItems = (res: Response) => {
   prisma.items.findMany().then((items) => {
     res.send(items);
   });

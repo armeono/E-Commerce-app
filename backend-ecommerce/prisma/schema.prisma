@@ -42,7 +42,7 @@ model Cart {
 
 model Images {
   id        Int    @id @default(autoincrement())
-  image_url String
+  image_url String @db.LongText
   Items     Items? @relation(fields: [itemsId], references: [id])
   itemsId   Int?
 }

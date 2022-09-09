@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.get("/all", (res: Response) => {
+router.get("/all", (req: Request, res: Response) => {
   getAllItems(res);
 });
 

@@ -17,6 +17,7 @@ export const ItemCardStyled = styled.div`
 export const CardImage = styled.img`
   width: 100%;
   height: 70%;
+  overflow: hidden;
 `;
 
 export const CardContent = styled.div`

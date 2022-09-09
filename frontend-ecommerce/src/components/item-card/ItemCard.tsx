@@ -9,17 +9,21 @@ import {
   ItemInfoContainer,
 } from "./ItemCard.styled";
 import AddItem from '../../assets/icons/AddItem.svg'
+import {ItemType} from '../../types/Types';
 
-interface ItemCardProps {}
+interface ItemCardProps {
+  item: ItemType
+}
 
-const ItemCard: FunctionComponent<ItemCardProps> = () => {
+const ItemCard: FunctionComponent<ItemCardProps> = ({item}) => {
+
   return (
     <ItemCardStyled>
-      <CardImage src="https://firebasestorage.googleapis.com/v0/b/e-commerce-a9979.appspot.com/o/Gear-Dell-XPS-15-OLED-1.webp?alt=media&token=b37e243e-00b8-481c-94fe-31aa3d6e21f3"/>
+      <CardImage src={item.images && item.images[0]?.image_url}/>
       <CardContent>
         <ItemInfoContainer>
-          <ItemName>Dell XPS 15</ItemName>
-          <ItemPrice>1200$</ItemPrice>
+          <ItemName>{item.name}</ItemName>
+          <ItemPrice>{item.price}$</ItemPrice>
         </ItemInfoContainer>
         <CardPlusIcon src={AddItem}/>
       </CardContent>

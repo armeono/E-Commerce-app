@@ -13,6 +13,7 @@ router.get("/all", (req: Request, res: Response) => {
 });
 
 router.get("/get/:id", (req: Request, res: Response) => {
+  console.log(req)
   getOneItem(Number(req.params.id), res);
 });
 

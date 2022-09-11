@@ -10,6 +10,7 @@ import {
 } from "./ItemCard.styled";
 import AddItem from '../../assets/icons/AddItem.svg'
 import {ItemType} from '../../types/Types';
+import { useNavigate } from "react-router-dom";
 
 interface ItemCardProps {
   item: ItemType
@@ -17,8 +18,23 @@ interface ItemCardProps {
 
 const ItemCard: FunctionComponent<ItemCardProps> = ({item}) => {
 
+  const navigate = useNavigate();
+
+  const handleCardClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+
+    navigate(`/item?id=${item.id}`)
+
+
+
+  }
+
+  
+
+
+
   return (
-    <ItemCardStyled>
+    <ItemCardStyled onClick={(e: React.MouseEvent<HTMLElement>) => handleCardClick(e)}>
       <CardImage src={item.images && item.images[0]?.image_url}/>
       <CardContent>
         <ItemInfoContainer>

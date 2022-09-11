@@ -10,15 +10,24 @@ import {
 } from "./Header.styled";
 import Logo from "../../assets/icons/Logo.svg";
 import Cart from "../../assets/icons/Cart.svg";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {}
 
 const Header: FunctionComponent<HeaderProps> = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+
+    navigate('/')
+
+  }
+
   return (
     <HeaderStyled>
       <HeaderBackground>
         <HeaderContent>
-          <HeaderLogo src={Logo} />
+          <HeaderLogo src={Logo} onClick={handleClick} />
           <TextAndCart>
             <HeaderText>All Products</HeaderText>
             <HeaderCart src={Cart} />

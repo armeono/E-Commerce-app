@@ -39,6 +39,7 @@ export const getAllItems = async (res: Response) => {
 };
 
 export const getOneItem = async (requestId: number, res: Response) => {
+
   const item = await prisma.items.findUnique({
     where: {
       id: requestId,

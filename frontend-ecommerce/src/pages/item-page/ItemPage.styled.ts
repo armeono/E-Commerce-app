@@ -87,6 +87,7 @@ export const DetailsContent = styled.ul`
 
 export const DetailsItem = styled.li`
   font-size: 20px;
+  font-weight: 400;
   text-decoration: none;
 `
 

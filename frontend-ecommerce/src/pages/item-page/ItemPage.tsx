@@ -92,7 +92,7 @@ const ItemPage: FunctionComponent<ItemPageProps> = () => {
                 </PriceContainer>
                 <QuantityContainer>
                   <Subheader>Quantity</Subheader>
-                  <QuantityCounter counter={counter} setCounter={setCounter}/>
+                  <QuantityCounter counter={counter} setCounter={setCounter} />
                 </QuantityContainer>
               </NamePriceQuantityContainer>
               <ButtonContainer>

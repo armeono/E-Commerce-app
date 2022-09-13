@@ -1,16 +1,24 @@
 import styled from "styled-components";
 
-export const HomeStyled = styled.div`
+interface HomeType { 
+  notScrollable: boolean
+}
+
+export const HomeStyled = styled.div<HomeType>`
   width: 100%;
   height: 100vh;
+  overflow: ${({notScrollable}) => notScrollable && 'hidden'};
+
 `;
 
 export const HomeBody = styled.div`
 
   width: 100%;
-  height: 100%;
+  height: 150%;
   background-color: ${({ theme }) => theme.colors.background};
   margin: 0 auto;
+
+
 `;
 
 export const CategoriesContainer = styled.div`

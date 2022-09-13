@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface MoreImagesType { 
+  currentImage?: boolean
+}
+
 export const ItemPageStyled = styled.div`
   height: 100vh;
   width: 100%;
@@ -38,12 +42,28 @@ export const ImageContainer = styled.div`
 
 export const MainImage = styled.img`
   padding: 20px;
-  width: 80%;
+  width: 75%;
 `;
 
-export const MoreImages = styled.div`
+export const MoreImagesContainer = styled.div`
   width: 20%;
+  padding-left: 10px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
 `;
+
+export const MoreImages = styled.img<MoreImagesType>`
+  width: 100%;
+  transform: ${({currentImage}) => currentImage && 'scale(0.85)'};
+  opacity:  ${({currentImage}) => currentImage && '0.7'};
+
+  cursor: pointer;
+
+`
 
 export const InfoAndBuy = styled.div`
   width: 40%;

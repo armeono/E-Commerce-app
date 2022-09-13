@@ -6,7 +6,7 @@ import {
   MainContent,
   ImageContainer,
   MainImage,
-  MoreImages,
+  MoreImagesContainer,
   InfoAndBuy,
   DetailsContainer,
   ItemName,
@@ -18,12 +18,15 @@ import {
   Subheader,
   Price,
   DetailsHeader,
+  MoreImages,
 } from "./ItemPage.styled";
 import Header from "../../components/header/Header";
 import QuantityCounter from "../../components/common/quantity-counter/QuantityCounter";
 import { useQuery } from "@tanstack/react-query";
 import { getOneItem } from "../../services/ItemService";
 import { useLocation } from "react-router-dom";
+import { ImagesType } from "../../types/Types";
+import { useState, useEffect } from "react";
 
 interface ItemPageProps {}
 
@@ -33,18 +36,47 @@ const ItemPage: FunctionComponent<ItemPageProps> = () => {
   const queryParams = new URLSearchParams(location.search);
   const itemId = queryParams.get("id");
 
-  const { data } = useQuery(["item"], () => itemId && getOneItem(Number(itemId)));
+  const { data } = useQuery(
+    ["item"],
+    () => itemId && getOneItem(Number(itemId))
+  );
 
+  const [currentImage, setCurrentImage] = useState<ImagesType>({
+    id: -1,
+    image_url: "",
+    imageId: -1,
+  });
+
+  const handleMoreImagesClick = (image: ImagesType) => {
+    setCurrentImage(image)
+  }
+
+
+
+  useEffect(() => {
+    if (data) {
+      setCurrentImage(data.images[0]);
+    }
+  }, [data]);
 
   return (
     <ItemPageStyled>
-      <Header></Header>
+      <Header />
       <ItemPageBody>
         <ItemContainer>
           <MainContent>
             <ImageContainer>
-              <MoreImages></MoreImages>
-              <MainImage src={data?.images[0].image_url}></MainImage>
+              <MoreImagesContainer>
+                {data?.images?.map((image: ImagesType) => (
+                  <MoreImages
+                    key={image.id}
+                    src={image.image_url}
+                    currentImage={image?.id !== currentImage?.id}
+                    onClick={() => handleMoreImagesClick(image)}
+                  />
+                ))}
+              </MoreImagesContainer>
+              {currentImage && <MainImage src={currentImage.image_url} />}
             </ImageContainer>
             <InfoAndBuy>
               <NamePriceQuantityContainer>

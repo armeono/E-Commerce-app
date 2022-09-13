@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-interface MoreImagesType { 
-  currentImage?: boolean
+interface MoreImagesType {
+  currentImage?: boolean;
 }
 
 export const ItemPageStyled = styled.div`
@@ -11,7 +11,6 @@ export const ItemPageStyled = styled.div`
 `;
 
 export const ItemPageBody = styled.div`
-
   width: 100%;
   padding-top: 100px;
 `;
@@ -58,12 +57,11 @@ export const MoreImagesContainer = styled.div`
 
 export const MoreImages = styled.img<MoreImagesType>`
   width: 100%;
-  transform: ${({currentImage}) => currentImage && 'scale(0.85)'};
-  opacity:  ${({currentImage}) => currentImage && '0.7'};
+  transform: ${({ currentImage }) => currentImage && "scale(0.85)"};
+  opacity: ${({ currentImage }) => currentImage && "0.7"};
 
   cursor: pointer;
-
-`
+`;
 
 export const InfoAndBuy = styled.div`
   width: 40%;
@@ -83,6 +81,14 @@ export const DetailsHeader = styled.h1`
   font-size: 30px;
   font-weight: 600;
 `;
+
+export const DetailsContent = styled.ul`
+`;
+
+export const DetailsItem = styled.li`
+  font-size: 20px;
+  text-decoration: none;
+`
 
 export const ItemName = styled.h1`
   font-size: 35px;

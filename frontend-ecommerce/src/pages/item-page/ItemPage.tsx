@@ -19,6 +19,8 @@ import {
   Price,
   DetailsHeader,
   MoreImages,
+  DetailsContent,
+  DetailsItem,
 } from "./ItemPage.styled";
 import Header from "../../components/header/Header";
 import QuantityCounter from "../../components/common/quantity-counter/QuantityCounter";
@@ -46,12 +48,15 @@ const ItemPage: FunctionComponent<ItemPageProps> = () => {
     image_url: "",
     imageId: -1,
   });
+  const [counter, setCounter] = useState(1);
 
   const handleMoreImagesClick = (image: ImagesType) => {
-    setCurrentImage(image)
-  }
+    setCurrentImage(image);
+  };
 
+  const handleBuy = () => {};
 
+  const detailsContent = data?.description.split(",");
 
   useEffect(() => {
     if (data) {
@@ -87,16 +92,21 @@ const ItemPage: FunctionComponent<ItemPageProps> = () => {
                 </PriceContainer>
                 <QuantityContainer>
                   <Subheader>Quantity</Subheader>
-                  <QuantityCounter />
+                  <QuantityCounter counter={counter} setCounter={setCounter}/>
                 </QuantityContainer>
               </NamePriceQuantityContainer>
               <ButtonContainer>
-                <BuyButton>Buy</BuyButton>
+                <BuyButton onClick={handleBuy}>Buy</BuyButton>
               </ButtonContainer>
             </InfoAndBuy>
           </MainContent>
           <DetailsContainer>
             <DetailsHeader>Details</DetailsHeader>
+            <DetailsContent>
+              {detailsContent?.map((item: string) => (
+                <DetailsItem>{item}</DetailsItem>
+              ))}
+            </DetailsContent>
           </DetailsContainer>
         </ItemContainer>
       </ItemPageBody>

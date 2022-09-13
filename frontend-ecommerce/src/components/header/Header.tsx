@@ -34,7 +34,6 @@ const Header: FunctionComponent<HeaderProps> = () => {
     (state: any) => state.CartSliceReducer.cartState
   );
 
-
   if (globalCart) {
     currentStateOfCart = globalCart;
   }
@@ -57,7 +56,7 @@ const Header: FunctionComponent<HeaderProps> = () => {
     <>
       <HeaderStyled>
         <HeaderBackground>
-            {currentStateOfCart && <CartComponent />}
+          {currentStateOfCart && <CartComponent />}
           <HeaderContent>
             <HeaderLogo src={Logo} onClick={handleClick} />
             <TextAndCart>

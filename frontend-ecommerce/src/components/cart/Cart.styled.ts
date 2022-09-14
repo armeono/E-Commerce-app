@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CartStyled = styled.div`
   position: absolute;
   right: 0;
-  width: 25%;
+  width: 28%;
   height: 200vh;
   background-color: ${({ theme }) => theme.colors.white};
   color: #000;
@@ -41,13 +41,72 @@ export const ArrowContainer = styled.img`
 export const CartWord = styled.h1`
   font-size: 40px;
   font-weight: 600;
-  color: ${({theme}) => theme.colors.mainBlue};
+  color: ${({ theme }) => theme.colors.mainBlue};
   flex-basis: 50px;
-`
+`;
 
 export const CartIcon = styled.img`
   width: 40px;
   height: 40px;
+`;
+
+export const CartItems = styled.div`
+  width: 100%;
+  padding: 15px;
+`;
+
+export const CartItem = styled.div`
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ItemHeader = styled.h1`
+  margin: 0;
+  font-size: 16px;
+`;
+
+export const ItemSubheader = styled.p`
+  margin: 0;
+  font-size: 15px;
+`;
+
+export const ItemNumber = styled.h1``;
+
+export const ItemImage = styled.img`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+`;
+export const X = styled.img`
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+`;
+
+export const HeadersContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const CheckoutButton = styled.button`
+  height: 50px;
+  width: 200px;
+  border: none;
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors.mainBlue};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const ImageAndHeadersContainer = styled.div`
+  display: flex;
+  align-items: center;
 `
 
-
+export const XAndInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`

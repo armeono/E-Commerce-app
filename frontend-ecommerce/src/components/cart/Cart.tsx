@@ -53,7 +53,6 @@ const Cart: FunctionComponent<CartProps> = () => {
                 <ItemSubheader>Laptop</ItemSubheader>
               </HeadersContainer>
             </ImageAndHeadersContainer>
-
             <XAndInfoContainer>
               <HeadersContainer>
                 <ItemHeader>Price: 1200$</ItemHeader>

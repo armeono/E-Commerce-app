@@ -1,5 +1,6 @@
 import express from "express";
-import itemRoutes from './routes/items.routes'
+import itemRoutes from './routes/items.routes';
+import cartRoutes from './routes/cart.routes';
 import dotenv from 'dotenv'
 import cors from 'cors';
 
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 
 //Routes
 app.use('/items', itemRoutes)
+app.use('/cart', cartRoutes)
 
 app
   .listen(PORT, () => {

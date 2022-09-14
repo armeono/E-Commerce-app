@@ -90,6 +90,7 @@ export const HeadersContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  
 `;
 
 export const CheckoutButton = styled.button`
@@ -104,9 +105,11 @@ export const CheckoutButton = styled.button`
 export const ImageAndHeadersContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 15px;
 `
 
 export const XAndInfoContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 5px;
 `

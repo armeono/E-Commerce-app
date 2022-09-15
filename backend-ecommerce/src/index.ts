@@ -3,6 +3,7 @@ import itemRoutes from './routes/items.routes';
 import cartRoutes from './routes/cart.routes';
 import dotenv from 'dotenv'
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
@@ -11,6 +12,8 @@ const app = express();
 app.use(cors({
   origin: "http://localhost:3000"
 }))
+
+app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 8080;
 

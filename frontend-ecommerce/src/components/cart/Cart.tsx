@@ -23,11 +23,17 @@ import CartImage from "../../assets/icons/Cart.svg";
 import { useDispatch } from "react-redux";
 import { changeCartState } from "../../slices/CartSlice";
 import XIcon from "../../assets/icons/X.svg";
+import {useQuery} from '@tanstack/react-query';
+import {getAllItemsOfUsers} from '../../services/CartService';
 
 interface CartProps {}
 
 const Cart: FunctionComponent<CartProps> = () => {
   const dispatch = useDispatch();
+
+  const {data} = useQuery(['cartItems'], () => getAllItemsOfUsers(2))
+
+  
 
   const handleExit = () => {
     dispatch(changeCartState(false));

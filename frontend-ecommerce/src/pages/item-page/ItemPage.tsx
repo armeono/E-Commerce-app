@@ -29,10 +29,20 @@ import { getOneItem } from "../../services/ItemService";
 import { useLocation } from "react-router-dom";
 import { ImagesType } from "../../types/Types";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
+import { addItemToCart } from "../../services/CartService";
 
 interface ItemPageProps {}
 
+interface CartItemsType {
+  userID: number;
+  itemID: number;
+}
+
 const ItemPage: FunctionComponent<ItemPageProps> = () => {
+
+  const userID = useSelector((state: any) => state.id.uniqueID);
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
@@ -54,7 +64,9 @@ const ItemPage: FunctionComponent<ItemPageProps> = () => {
     setCurrentImage(image);
   };
 
-  const handleBuy = () => {};
+  const handleBuy = (userID: number, itemID: number) => {
+    addItemToCart(userID, itemID);
+  };
 
   const detailsContent = data?.description.split(",");
 
@@ -96,7 +108,9 @@ const ItemPage: FunctionComponent<ItemPageProps> = () => {
                 </QuantityContainer>
               </NamePriceQuantityContainer>
               <ButtonContainer>
-                <BuyButton onClick={handleBuy}>Buy</BuyButton>
+                <BuyButton onClick={() => handleBuy(userID, Number(itemId))}>
+                  Buy
+                </BuyButton>
               </ButtonContainer>
             </InfoAndBuy>
           </MainContent>

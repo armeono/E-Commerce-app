@@ -82,14 +82,13 @@ export const DetailsHeader = styled.h1`
   font-weight: 600;
 `;
 
-export const DetailsContent = styled.ul`
-`;
+export const DetailsContent = styled.ul``;
 
 export const DetailsItem = styled.li`
   font-size: 20px;
   font-weight: 400;
   text-decoration: none;
-`
+`;
 
 export const ItemName = styled.h1`
   font-size: 35px;
@@ -152,5 +151,9 @@ export const BuyButton = styled.div`
   &:hover {
     opacity: 0.9;
     transform: scale(0.98);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;

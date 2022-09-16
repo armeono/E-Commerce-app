@@ -8,6 +8,8 @@ import {
   CartIcon,
   CartWord,
   CartItems,
+  CheckoutButton,
+  ButtonContainer,
 } from "./Cart.styled";
 import Arrow from "../../assets/icons/LeftArrow.svg";
 import CartImage from "../../assets/icons/Cart.svg";
@@ -52,9 +54,18 @@ const Cart: FunctionComponent<CartProps> = () => {
         <CartItems>
           {data &&
             data?.data.map((item: CartItemType, index: number) => (
-              <CartItem cartItem={item} index={index} refetchItems={refetchItems}/>
+              <CartItem
+                cartItem={item}
+                index={index}
+                refetchItems={refetchItems}
+              />
             ))}
         </CartItems>
+        <ButtonContainer>
+          {data && data.data?.length !== 0 && (
+            <CheckoutButton>Checkout</CheckoutButton>
+          )}
+        </ButtonContainer>
       </CartStyled>
     </>
   );

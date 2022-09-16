@@ -56,7 +56,12 @@ export const CartItems = styled.div`
 `;
 
 
-
+export const HeadersContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+`;
 
 export const CheckoutButton = styled.button`
   height: 50px;
@@ -65,5 +70,13 @@ export const CheckoutButton = styled.button`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.mainBlue};
   color: ${({ theme }) => theme.colors.white};
+  font-size: 22px;
+  margin-right: 25px;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+`
 

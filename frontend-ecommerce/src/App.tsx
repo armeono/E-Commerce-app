@@ -10,9 +10,9 @@ import ItemPage from "./pages/item-page/ItemPage";
 import { v4 as uuid } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import { setID } from "./slices/IDSlice";
+import { queryClient } from "./queryClient";
 
 function App() {
-  const queryClient = new QueryClient();
 
   const arrayOfNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 

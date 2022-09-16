@@ -2,7 +2,6 @@ import { PrismaClient } from "@prisma/client";
 import { Response } from "express";
 const prisma = new PrismaClient();
 
-
 export const getAllCartItems = async () => {
   const cartItems = await prisma.cart.findMany();
 
@@ -10,28 +9,31 @@ export const getAllCartItems = async () => {
 };
 
 export const getAllCartItemsOfUser = async (id: number, res: Response) => {
-  const cartItems = await prisma.cart.findMany({
-    where: {
-      userId: id,
-    },
-  });
-
-  res.send(cartItems);
+  const cartItems = await prisma.cart
+    .findMany({
+      where: {
+        userId: id,
+      },
+    })
+    .then((items) => res.send(items));
 };
 
-export const addItemToCart = (userId: number, itemId: number) => {
-  prisma.cart.create({
-    data: {
-      userId: userId,
-      itemId: itemId,
-    },
-  });
+export const addItemToCart = (user: number, item: number) => {
+  prisma.cart
+    .create({
+      data: {
+        userId: user,
+        itemId: item,
+      },
+    })
+    .then(() => console.log("item added!"))
+    .catch((err) => console.log(err));
 };
 
 export const removeItemFromCart = (cartItemId: number) => {
-  prisma.cart.delete({
+    prisma.cart.delete({
     where: {
       id: cartItemId,
     },
-  });
+  }).then((res) => res)
 };

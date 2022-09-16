@@ -8,32 +8,32 @@ import {
   CartIcon,
   CartWord,
   CartItems,
-  ItemNumber,
-  ItemHeader,
-  ItemSubheader,
-  ItemImage,
-  HeadersContainer,
-  CartItem,
-  X,
-  ImageAndHeadersContainer,
-  XAndInfoContainer,
 } from "./Cart.styled";
 import Arrow from "../../assets/icons/LeftArrow.svg";
 import CartImage from "../../assets/icons/Cart.svg";
-import { useDispatch } from "react-redux";
 import { changeCartState } from "../../slices/CartSlice";
 import XIcon from "../../assets/icons/X.svg";
-import {useQuery} from '@tanstack/react-query';
-import {getAllItemsOfUsers} from '../../services/CartService';
+import { useQuery } from "@tanstack/react-query";
+import { getAllItemsOfUsers } from "../../services/CartService";
+import { useDispatch, useSelector } from "react-redux";
+import CartItem from "../cart-item/CartItem";
 
 interface CartProps {}
+
+export interface CartItemType {
+  id: number;
+  userId: number;
+  itemId: number;
+}
 
 const Cart: FunctionComponent<CartProps> = () => {
   const dispatch = useDispatch();
 
-  const {data} = useQuery(['cartItems'], () => getAllItemsOfUsers(2))
+  const userID = useSelector((state: any) => state.id.uniqueID);
 
-  
+  const { data, refetch: refetchItems } = useQuery(["cartItems"], () =>
+    getAllItemsOfUsers(Number(userID))
+  );
 
   const handleExit = () => {
     dispatch(changeCartState(false));
@@ -50,23 +50,10 @@ const Cart: FunctionComponent<CartProps> = () => {
         </CartHeader>
         <LineBreak />
         <CartItems>
-          <CartItem>
-            <ImageAndHeadersContainer>
-              <ItemNumber>1.</ItemNumber>
-              <ItemImage />
-              <HeadersContainer>
-                <ItemHeader>Lenovo Thinkpad</ItemHeader>
-                <ItemSubheader>Laptop</ItemSubheader>
-              </HeadersContainer>
-            </ImageAndHeadersContainer>
-            <XAndInfoContainer>
-              <HeadersContainer>
-                <ItemHeader>Price: 1200$</ItemHeader>
-                <ItemSubheader>Quantity: 1x</ItemSubheader>
-              </HeadersContainer>
-              <X src={XIcon} />
-            </XAndInfoContainer>
-          </CartItem>
+          {data &&
+            data?.data.map((item: CartItemType, index: number) => (
+              <CartItem cartItem={item} index={index} refetchItems={refetchItems}/>
+            ))}
         </CartItems>
       </CartStyled>
     </>

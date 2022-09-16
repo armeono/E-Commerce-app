@@ -7,13 +7,10 @@ import {
   getAllCartItemsOfUser,
 } from "../controllers/cart.controller";
 
-
 const router = express.Router();
 
 router.get("/getAll/:id", async (req: Request, res: Response) => {
   const items = await getAllCartItemsOfUser(Number(req.params.id), res);
-
-  res.send(items);
 });
 
 router.get("/getAll", async (req: Request, res: Response) => {
@@ -23,13 +20,13 @@ router.get("/getAll", async (req: Request, res: Response) => {
 });
 
 router.post("/post", (req: Request, res: Response) => {
-  console.log("request", req.body);
-
-  addItemToCart(req.body.userId, req.body.itemId);
+  addItemToCart(Number(req.body.data.userId), req.body.data.itemId);
 });
 
-router.delete("/delete/:id", (req: Request, res: Response) => {
-  removeItemFromCart(Number(req.params.id));
+router.delete("/delete/:id", async (req: Request, res: Response) => {
+  const response = await removeItemFromCart(Number(req.params.id));
+
+  res.send(response);
 });
 
 export default router;

@@ -109,7 +109,7 @@ const ItemPage: FunctionComponent<ItemPageProps> = () => {
               </NamePriceQuantityContainer>
               <ButtonContainer>
                 <BuyButton onClick={() => handleBuy(userID, Number(itemId))}>
-                  Buy
+                  Add to cart
                 </BuyButton>
               </ButtonContainer>
             </InfoAndBuy>

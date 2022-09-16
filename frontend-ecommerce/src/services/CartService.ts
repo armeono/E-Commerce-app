@@ -1,13 +1,15 @@
 import axios from "axios";
 
-export const getAllItemsOfUsers = (userID: number) => {
-  axios
-    .get(`${process.env.REACT_APP_URL}/cart/getAll/${userID}`)
-    .then((response) => response.data);
+export const getAllItemsOfUsers = async (userID: number) => {
+  const items = await axios.get(
+    `${process.env.REACT_APP_URL}/cart/getAll/${userID}`
+  );
+
+  return items;
 };
 
 export const addItemToCart = (userID: number, itemID: number) => {
-  axios
+  return axios
     .post(`${process.env.REACT_APP_URL}/cart/post`, {
       data: {
         userId: userID,
@@ -18,7 +20,8 @@ export const addItemToCart = (userID: number, itemID: number) => {
 };
 
 export const removeItemFromCart = (cartItemID: number) => {
-  axios
+  return axios
     .delete(`${process.env.REACT_APP_URL}/cart/delete/${cartItemID}`)
+    .then(() => console.log("item removed!"))
     .catch((err) => console.log(err));
 };

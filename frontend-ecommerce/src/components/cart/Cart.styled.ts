@@ -72,6 +72,8 @@ export const CheckoutButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: 22px;
   margin-right: 25px;
+
+  cursor: pointer;
 `;
 
 export const ButtonContainer = styled.div`

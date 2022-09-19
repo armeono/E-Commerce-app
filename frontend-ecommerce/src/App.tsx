@@ -11,6 +11,7 @@ import { v4 as uuid } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import { setID } from "./slices/IDSlice";
 import { queryClient } from "./queryClient";
+import Checkout from "./pages/checkout/Checkout";
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/item" element={<ItemPage />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

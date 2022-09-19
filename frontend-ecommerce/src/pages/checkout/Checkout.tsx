@@ -15,6 +15,8 @@ import {
   InputLabel,
   InputStyled,
   InputsContainer,
+  ItemsContainer,
+  PaymentContainer
 } from "./Checkout.styled";
 import Wave from "../../assets/icons/Wave.svg";
 import StoreLogo from "../../assets/icons/Logo.svg";
@@ -50,8 +52,33 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
                 <InputStyled />
               </InputAndLabelContainer>
 
-              <InputAndLabelContainer style={{ gridColumn: "span 4" }}>
-                <InputLabel>E-mail</InputLabel>
+              <InputAndLabelContainer style={{ gridColumn: "span 2" }}>
+                <InputLabel>City</InputLabel>
+                <InputStyled />
+              </InputAndLabelContainer>
+
+              <InputAndLabelContainer style={{ gridColumn: "span 1" }}>
+                <InputLabel>Country</InputLabel>
+                <InputStyled />
+              </InputAndLabelContainer>
+
+              <InputAndLabelContainer style={{ gridColumn: "span 1" }}>
+                <InputLabel>Zip Code</InputLabel>
+                <InputStyled />
+              </InputAndLabelContainer>
+
+              <InputAndLabelContainer style={{ gridColumn: "span 2" }}>
+                <InputLabel>Card Number</InputLabel>
+                <InputStyled />
+              </InputAndLabelContainer>
+
+              <InputAndLabelContainer style={{ gridColumn: "span 1" }}>
+                <InputLabel>CVC</InputLabel>
+                <InputStyled />
+              </InputAndLabelContainer>
+
+              <InputAndLabelContainer style={{ gridColumn: "span 1" }}>
+                <InputLabel>Exp Date</InputLabel>
                 <InputStyled />
               </InputAndLabelContainer>
             </InputsContainer>
@@ -59,6 +86,9 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
           <Line />
           <ItemAndPaymentInfo>
             <SectionName>Items</SectionName>
+            <ItemsContainer></ItemsContainer>
+            <Line horizontal/>
+            <PaymentContainer></PaymentContainer>
           </ItemAndPaymentInfo>
         </ContentContainer>
       </CheckoutContent>

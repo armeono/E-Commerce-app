@@ -32,6 +32,7 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
   const goBack = () => {
     navigate(-1)
   }
+  
   return (
     <CheckoutStyled>
       <CheckoutWave src={Wave} />

@@ -12,6 +12,7 @@ export const CartStyled = styled.div<CartType>`
   background-color: ${({ theme }) => theme.colors.white};
   color: #000;
   transition: width 400ms;
+  z-index: 2;
 `;
 
 export const Overlay = styled.div`
@@ -21,6 +22,7 @@ export const Overlay = styled.div`
   width: 100%;
   height: 200vh;
   cursor: pointer;
+  z-index: 2;
 `;
 
 export const CartHeader = styled.div`

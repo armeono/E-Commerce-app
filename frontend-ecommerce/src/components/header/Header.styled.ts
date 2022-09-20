@@ -30,6 +30,8 @@ export const HeaderLogo = styled.img`
 `;
 
 export const TextAndCart = styled.div`
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -50,3 +52,23 @@ export const HeaderCart = styled.img`
   width: 40px;
   cursor: pointer;
 `;
+
+export const CounterBubble = styled.div`
+  position: absolute;
+  right: -12px;
+  top: 8px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.mainBlue};
+`;
+
+export const ItemCounter = styled.p`
+  font-size: 15px;
+  color: white;
+  font-weight: 500;
+`

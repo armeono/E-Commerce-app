@@ -21,16 +21,23 @@ import {
 import Wave from "../../assets/icons/Wave.svg";
 import StoreLogo from "../../assets/icons/Logo.svg";
 import BackArrow from "../../assets/icons/LeftArrow.svg";
+import {useNavigate} from 'react-router-dom'
 
 interface CheckoutProps {}
 
 const Checkout: FunctionComponent<CheckoutProps> = () => {
+
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1)
+  }
   return (
     <CheckoutStyled>
       <CheckoutWave src={Wave} />
       <CheckoutContent>
         <LogoAndArrowContainer>
-          <Arrow src={BackArrow} />
+          <Arrow src={BackArrow} onClick={goBack}/>
           <Logo src={StoreLogo} />
         </LogoAndArrowContainer>
         <ContentContainer>

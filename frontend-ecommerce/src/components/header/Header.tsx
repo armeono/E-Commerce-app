@@ -56,7 +56,7 @@ const Header: FunctionComponent<HeaderProps> = () => {
     <>
       <HeaderStyled>
         <HeaderBackground>
-          {currentStateOfCart && <CartComponent />}
+          <CartComponent />
           <HeaderContent>
             <HeaderLogo src={Logo} onClick={handleClick} />
             <TextAndCart>

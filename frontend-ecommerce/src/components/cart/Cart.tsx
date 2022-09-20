@@ -19,6 +19,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllItemsOfUsers } from "../../services/CartService";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../cart-item/CartItem";
+import { useNavigate } from "react-router-dom";
 
 interface CartProps {}
 
@@ -30,8 +31,12 @@ export interface CartItemType {
 
 const Cart: FunctionComponent<CartProps> = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const userID = useSelector((state: any) => state.id.uniqueID);
+  const globalCart = useSelector(
+    (state: any) => state.CartSliceReducer.cartState
+  );
 
   const { data, refetch: refetchItems } = useQuery(["cartItems"], () =>
     getAllItemsOfUsers(Number(userID))
@@ -41,10 +46,16 @@ const Cart: FunctionComponent<CartProps> = () => {
     dispatch(changeCartState(false));
   };
 
+  const goToCheckout = () => {
+
+    navigate("/checkout");
+    
+  };
+
   return (
     <>
-      <Overlay onClick={handleExit} />
-      <CartStyled>
+      {globalCart && <Overlay onClick={handleExit} />}
+      <CartStyled cartWidth={globalCart}>
         <CartHeader>
           <ArrowContainer src={Arrow} onClick={handleExit} />
           <CartWord>Cart</CartWord>
@@ -61,9 +72,9 @@ const Cart: FunctionComponent<CartProps> = () => {
               />
             ))}
         </CartItems>
-        <ButtonContainer>
+        <ButtonContainer cartWidth={globalCart}>
           {data && data.data?.length !== 0 && (
-            <CheckoutButton>Checkout</CheckoutButton>
+            <CheckoutButton onClick={goToCheckout}>Checkout</CheckoutButton>
           )}
         </ButtonContainer>
       </CartStyled>

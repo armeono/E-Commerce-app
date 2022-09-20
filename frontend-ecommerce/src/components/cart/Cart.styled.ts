@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
-export const CartStyled = styled.div`
+interface CartType { 
+  cartWidth?: boolean;
+}
+
+export const CartStyled = styled.div<CartType>`
   position: absolute;
   right: 0;
-  width: 28%;
+  width: ${({cartWidth}) => cartWidth ? "28%" : "0%"};
   height: 200vh;
   background-color: ${({ theme }) => theme.colors.white};
   color: #000;
+  transition: width 400ms;
 `;
 
 export const Overlay = styled.div`
@@ -72,12 +77,20 @@ export const CheckoutButton = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: 22px;
   margin-right: 25px;
-
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
+export const ButtonContainer = styled.div<CartType>`
+  display: ${({cartWidth}) => cartWidth ? "flex" : "none"};
   align-items: center;
   justify-content: end;
 `

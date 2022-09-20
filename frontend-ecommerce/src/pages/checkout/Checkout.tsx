@@ -16,29 +16,42 @@ import {
   InputStyled,
   InputsContainer,
   ItemsContainer,
-  PaymentContainer
+  PaymentContainer,
+  TotalAndShippingContainer,
+  TotalPrice,
+  Shipping,
+  OrderButton,
 } from "./Checkout.styled";
 import Wave from "../../assets/icons/Wave.svg";
 import StoreLogo from "../../assets/icons/Logo.svg";
 import BackArrow from "../../assets/icons/LeftArrow.svg";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import { getAllItemsOfUsers } from "../../services/CartService";
+import CartItem from '../../components/cart-item/CartItem';
+import Cart from "../../components/cart/Cart";
+import {CartItemType} from '../../components/cart/Cart';
 
 interface CheckoutProps {}
 
 const Checkout: FunctionComponent<CheckoutProps> = () => {
-
   const navigate = useNavigate();
 
+  const userID = useSelector((state: any) => state.id.uniqueID);
+
+  const {data, refetch} = useQuery(['checkout-items'], () => getAllItemsOfUsers(userID));
+
   const goBack = () => {
-    navigate(-1)
-  }
-  
+    navigate(-1);
+  };
+
   return (
     <CheckoutStyled>
       <CheckoutWave src={Wave} />
       <CheckoutContent>
         <LogoAndArrowContainer>
-          <Arrow src={BackArrow} onClick={goBack}/>
+          <Arrow src={BackArrow} onClick={goBack} />
           <Logo src={StoreLogo} />
         </LogoAndArrowContainer>
         <ContentContainer>
@@ -94,9 +107,19 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
           <Line />
           <ItemAndPaymentInfo>
             <SectionName>Items</SectionName>
-            <ItemsContainer></ItemsContainer>
-            <Line horizontal/>
-            <PaymentContainer></PaymentContainer>
+            <ItemsContainer>
+              {data && data?.data.map((item: CartItemType, index: number) => (
+                <CartItem cartItem={item} index={index} refetchItems={refetch}></CartItem>
+              ))}
+            </ItemsContainer>
+            <Line horizontal />
+            <PaymentContainer>
+              <TotalAndShippingContainer>
+                <Shipping>Shipping: 0$</Shipping>
+                <TotalPrice>Total: </TotalPrice>
+              </TotalAndShippingContainer>
+              <OrderButton>Order</OrderButton>
+            </PaymentContainer>
           </ItemAndPaymentInfo>
         </ContentContainer>
       </CheckoutContent>

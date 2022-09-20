@@ -44,8 +44,6 @@ const Header: FunctionComponent<HeaderProps> = () => {
     getAllItemsOfUsers(userID)
   );
 
-  console.log(data)
-
   if (globalCart) {
     currentStateOfCart = globalCart;
   }

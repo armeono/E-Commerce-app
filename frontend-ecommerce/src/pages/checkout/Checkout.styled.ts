@@ -125,6 +125,7 @@ export const ItemsContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   height: 75%;
+  overflow-y: auto;
 
 `
 
@@ -132,6 +133,42 @@ export const PaymentContainer = styled.div`
   height: 20%;
   width: 90%;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
 `
+export const TotalAndShippingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
 
+export const Shipping = styled.p`
+  font-size: 18px;
+  color: ${({theme}) => theme.colors.grayText};
+  margin: 0;
+`
+
+export const TotalPrice = styled.h1`
+  font-size: 35px;
+  margin: 0;
+`
+
+export const OrderButton = styled.button`
+  height: 70px;
+  width: 300px;
+  color: white;
+  background-color: ${({theme}) => theme.colors.mainBlue};
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  font-size: 30px;
+
+  &:hover { 
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+
+`

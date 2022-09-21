@@ -30,8 +30,6 @@ export const createNewItem = () => {
   // prisma.images.findMany().then((res) => console.log(res))
 };
 
-
-
 export const getAllItems = async (res: Response) => {
   const items = await prisma.items.findMany({include: {images: true, carts: true}});
 

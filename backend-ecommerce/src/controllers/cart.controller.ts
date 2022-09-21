@@ -57,11 +57,11 @@ export const sendEmail = (res: Response) => {
 
   transporter.sendMail(
     {
-      from: `${process.env.EMAIL}`,
+      from: `Tech Online Store <${process.env.EMAIL}>`,
       to: ["ahadzigrahic@gmail.com"],
       subject: "Order receipt",
-      text: `Hello, Arman. Please find attached your order receipt. Thank you for shopping with us!`,
-      html: "<b>Order</b> ",
+      text: ``,
+      html: "<h1>Hello, Arman</h1><p>Please find attached your order receipt. Thank you for shopping with us!</p>  ",
     },
     (err: any) => {
       if (err) res.send(err);

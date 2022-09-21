@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Response } from "express";
 const prisma = new PrismaClient();
+import nodemailer from "nodemailer";
 
 export const getAllCartItems = async () => {
   const cartItems = await prisma.cart.findMany();
@@ -38,4 +39,34 @@ export const removeItemFromCart = (cartItemId: number) => {
       },
     })
     .then((res) => res);
+};
+
+export const sendEmail = (res: Response) => {
+  let transporter = nodemailer.createTransport({
+    service: "hotmail",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  transporter.sendMail(
+    {
+      from: `${process.env.EMAIL}`,
+      to: ["ahadzigrahic@gmail.com"],
+      subject: "Order receipt",
+      text: `Hello, Arman. Please find attached your order receipt. Thank you for shopping with us!`,
+      html: "<b>Order</b> ",
+    },
+    (err: any) => {
+      if (err) res.send(err);
+
+      res.status(200).send("Email sent!");
+    }
+  );
 };

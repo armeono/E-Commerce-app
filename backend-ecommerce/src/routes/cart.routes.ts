@@ -6,6 +6,7 @@ import {
   removeItemFromCart,
   getAllCartItemsOfUser,
 } from "../controllers/cart.controller";
+import { sendEmail } from "../controllers/cart.controller";
 
 const router = express.Router();
 
@@ -27,6 +28,13 @@ router.delete("/delete/:id", async (req: Request, res: Response) => {
   const response = await removeItemFromCart(Number(req.params.id));
 
   res.send(response);
+});
+
+router.get("/send-email", async (req: Request, res: Response) => {
+
+  return sendEmail(res);
+
+
 });
 
 export default router;

@@ -4,7 +4,7 @@ interface InputType {
   width?: string;
 }
 
-interface LineType { 
+interface LineType {
   horizontal?: boolean;
 }
 
@@ -23,10 +23,11 @@ export const CheckoutWave = styled.img`
 `;
 
 export const CheckoutContent = styled.div`
+  position: relative;
   height: 80%;
   width: 80%;
   background-color: ${({ theme }) => theme.colors.white};
-  opacity: 0.8;
+  opacity: 0.85;
   border-radius: 4px;
 `;
 
@@ -83,7 +84,7 @@ export const InputStyled = styled.input<InputType>`
 
   &:focus {
     outline: none;
-    border: 2px solid ${({theme}) => theme.colors.mainBlue};
+    border: 2px solid ${({ theme }) => theme.colors.mainBlue};
   }
 
   font-size: 16px;
@@ -116,8 +117,8 @@ export const InputAndLabelContainer = styled.div`
 `;
 
 export const Line = styled.hr<LineType>`
-  height: ${({horizontal}) => horizontal ? "" : "90%"};
-  width: ${({horizontal}) => horizontal ? "90%" : ""};
+  height: ${({ horizontal }) => (horizontal ? "" : "90%")};
+  width: ${({ horizontal }) => (horizontal ? "90%" : "")};
 `;
 
 export const ItemsContainer = styled.div`
@@ -126,8 +127,7 @@ export const ItemsContainer = styled.div`
   gap: 20px;
   height: 75%;
   overflow-y: auto;
-
-`
+`;
 
 export const PaymentContainer = styled.div`
   height: 20%;
@@ -136,39 +136,37 @@ export const PaymentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-`
+`;
 export const TotalAndShippingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-`
+`;
 
 export const Shipping = styled.p`
   font-size: 18px;
-  color: ${({theme}) => theme.colors.grayText};
+  color: ${({ theme }) => theme.colors.grayText};
   margin: 0;
-`
+`;
 
 export const TotalPrice = styled.h1`
   font-size: 35px;
   margin: 0;
-`
+`;
 
 export const OrderButton = styled.button`
   height: 70px;
   width: 300px;
   color: white;
-  background-color: ${({theme}) => theme.colors.mainBlue};
+  background-color: ${({ theme }) => theme.colors.mainBlue};
   border: none;
   border-radius: 4px;
   cursor: pointer;
 
   font-size: 30px;
 
-  &:hover { 
+  &:hover {
     opacity: 0.9;
     transform: scale(0.98);
   }
-
-`
+`;

@@ -19,5 +19,14 @@ export interface CartType {
     id: number, 
     userId: number, 
     itemId: number
+}
 
+export interface CheckoutType { 
+    firstName: string,
+    lastName: string, 
+    email: string, 
+    city?: string, 
+    country?: string,
+    zipcode?: string,
+    items: CartType[]
 }

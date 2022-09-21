@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import {
   CheckoutStyled,
   CheckoutWave,
@@ -29,9 +29,10 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getAllItemsOfUsers } from "../../services/CartService";
-import CartItem from '../../components/cart-item/CartItem';
+import CartItem from "../../components/cart-item/CartItem";
 import Cart from "../../components/cart/Cart";
-import {CartItemType} from '../../components/cart/Cart';
+import { CartItemType } from "../../components/cart/Cart";
+import { count } from "console";
 
 interface CheckoutProps {}
 
@@ -40,10 +41,34 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
 
   const userID = useSelector((state: any) => state.id.uniqueID);
 
-  const {data, refetch} = useQuery(['checkout-items'], () => getAllItemsOfUsers(userID));
+  const { data, refetch } = useQuery(["checkout-items"], () =>
+    getAllItemsOfUsers(userID)
+  );
+
+  const [totalPrice, setTotalPrice] = useState<number | undefined>(0);
+
+  const [firstName, setFirstName] = useState<string>();
+  const [lastName, setLastName] = useState<string>();
+  const [email, setEmail] = useState<string>();
+  const [city, setCity] = useState<string>();
+  const [country, setCountry] = useState<string>();
+  const [zipCode, setZipCode] = useState<string>();
 
   const goBack = () => {
     navigate(-1);
+  };
+
+  const sendEmail = () => {
+    const emailDetails = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      city: city,
+      country: country,
+      zipCode: zipCode,
+    };
+
+    console.log(emailDetails);
   };
 
   return (
@@ -60,32 +85,50 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
             <InputsContainer>
               <InputAndLabelContainer style={{ gridColumn: "span 2" }}>
                 <InputLabel>First name</InputLabel>
-                <InputStyled />
+                <InputStyled
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
               </InputAndLabelContainer>
 
               <InputAndLabelContainer style={{ gridColumn: "span 2" }}>
                 <InputLabel>Last name</InputLabel>
-                <InputStyled />
+                <InputStyled
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
               </InputAndLabelContainer>
 
               <InputAndLabelContainer style={{ gridColumn: "span 4" }}>
                 <InputLabel>E-mail</InputLabel>
-                <InputStyled />
+                <InputStyled
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </InputAndLabelContainer>
 
               <InputAndLabelContainer style={{ gridColumn: "span 2" }}>
                 <InputLabel>City</InputLabel>
-                <InputStyled />
+                <InputStyled
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                />
               </InputAndLabelContainer>
 
               <InputAndLabelContainer style={{ gridColumn: "span 1" }}>
                 <InputLabel>Country</InputLabel>
-                <InputStyled />
+                <InputStyled
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                />
               </InputAndLabelContainer>
 
               <InputAndLabelContainer style={{ gridColumn: "span 1" }}>
                 <InputLabel>Zip Code</InputLabel>
-                <InputStyled />
+                <InputStyled
+                  value={zipCode}
+                  onChange={(e) => setZipCode(e.target.value)}
+                />
               </InputAndLabelContainer>
 
               <InputAndLabelContainer style={{ gridColumn: "span 2" }}>
@@ -108,17 +151,24 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
           <ItemAndPaymentInfo>
             <SectionName>Items</SectionName>
             <ItemsContainer>
-              {data && data?.data.map((item: CartItemType, index: number) => (
-                <CartItem cartItem={item} index={index} refetchItems={refetch}></CartItem>
-              ))}
+              {data &&
+                data?.data.map((item: CartItemType, index: number) => (
+                  <CartItem
+                    cartItem={item}
+                    index={index}
+                    refetchItems={refetch}
+                    totalPrice={totalPrice}
+                    setTotalPrice={setTotalPrice}
+                  ></CartItem>
+                ))}
             </ItemsContainer>
             <Line horizontal />
             <PaymentContainer>
               <TotalAndShippingContainer>
                 <Shipping>Shipping: 0$</Shipping>
-                <TotalPrice>Total: </TotalPrice>
+                <TotalPrice>Total: {totalPrice}$</TotalPrice>
               </TotalAndShippingContainer>
-              <OrderButton>Order</OrderButton>
+              <OrderButton onClick={sendEmail}>Order</OrderButton>
             </PaymentContainer>
           </ItemAndPaymentInfo>
         </ContentContainer>

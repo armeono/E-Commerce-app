@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { Dispatch, FunctionComponent, SetStateAction } from "react";
 import {
   Item,
   ItemHeader,
@@ -18,33 +18,46 @@ import { ItemType } from "../../types/Types";
 import { removeItemFromCart } from "../../services/CartService";
 import { queryClient } from "../../queryClient";
 import { useMutation } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 interface CartItemProps {
   cartItem: CartItemType;
   index: number;
   refetchItems: () => void;
+  totalPrice?: number;
+  setTotalPrice?: Dispatch<SetStateAction<number | undefined>>;
 }
 
 const CartItem: FunctionComponent<CartItemProps> = ({
   cartItem,
   index,
   refetchItems,
+  totalPrice,
+  setTotalPrice,
 }) => {
-  const { data, refetch } = useQuery(["item", cartItem], () =>
+  const { data } = useQuery(["item", cartItem], () =>
     getOneItem(cartItem.itemId)
   );
 
-  const { mutate, isSuccess } = useMutation(removeItemFromCart, {
+  const { mutate } = useMutation(removeItemFromCart, {
     onSuccess: () => {
-      console.log("deleted");
       queryClient.invalidateQueries(["cartItems"]);
-      refetchItems();
+      setTimeout(() => {
+        refetchItems();
+      }, 50);
     },
   });
 
   const removeItem = () => {
     return mutate(cartItem.id);
   };
+
+  useEffect(() => {
+    if (data && setTotalPrice) {
+      console.log(totalPrice)
+      setTotalPrice(() => (totalPrice +=  data?.price));
+    }
+  }, [data]);
 
   return (
     <>

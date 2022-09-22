@@ -30,11 +30,8 @@ router.delete("/delete/:id", async (req: Request, res: Response) => {
   res.send(response);
 });
 
-router.get("/send-email", async (req: Request, res: Response) => {
-
-  return sendEmail(res);
-
-
+router.post("/send-email", async (req: Request, res: Response) => {
+  return sendEmail(req, res);
 });
 
 export default router;

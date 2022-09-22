@@ -54,8 +54,7 @@ const CartItem: FunctionComponent<CartItemProps> = ({
 
   useEffect(() => {
     if (data && setTotalPrice) {
-      console.log(totalPrice)
-      setTotalPrice(() => (totalPrice +=  data?.price));
+      setTotalPrice(() => (totalPrice += data?.price));
     }
   }, [data]);
 

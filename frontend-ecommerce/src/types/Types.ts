@@ -22,11 +22,11 @@ export interface CartType {
 }
 
 export interface CheckoutType { 
-    firstName: string,
-    lastName: string, 
-    email: string, 
-    city?: string, 
-    country?: string,
-    zipcode?: string,
-    items: CartType[]
+    firstName: string | undefined,
+    lastName: string | undefined, 
+    email: string | undefined, 
+    city?: string | undefined, 
+    country?: string | undefined,
+    zipCode?: string | undefined,
+    items: CartType[] | undefined
 }

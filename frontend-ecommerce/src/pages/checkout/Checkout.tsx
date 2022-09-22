@@ -30,9 +30,8 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getAllItemsOfUsers } from "../../services/CartService";
 import CartItem from "../../components/cart-item/CartItem";
-import Cart from "../../components/cart/Cart";
 import { CartItemType } from "../../components/cart/Cart";
-import { count } from "console";
+import { OrderAndSendEmail } from "../../services/CartService";
 
 interface CheckoutProps {}
 
@@ -59,6 +58,7 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
   };
 
   const sendEmail = () => {
+
     const emailDetails = {
       firstName: firstName,
       lastName: lastName,
@@ -66,9 +66,10 @@ const Checkout: FunctionComponent<CheckoutProps> = () => {
       city: city,
       country: country,
       zipCode: zipCode,
+      items: data?.data
     };
 
-    console.log(emailDetails);
+    if (emailDetails.email !== undefined) OrderAndSendEmail(emailDetails);
   };
 
   return (

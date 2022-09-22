@@ -2,6 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import { resolve } from "path";
 const prisma = new PrismaClient();
 import { Request, Response } from "express";
+import { copyFile } from "fs";
+import { nextTick } from "process";
 
 export const createNewItem = () => {
   // prisma.items
@@ -16,14 +18,15 @@ export const createNewItem = () => {
 
   //   }}).then(() => console.log('item created'))
 
-  prisma.images.create({
-    data: {
-      image_url: "https://firebasestorage.googleapis.com/v0/b/e-commerce-a9979.appspot.com/o/Macbook%2016%2Fvpavic_191118_3800_0122.jpg?alt=media&token=563ebe62-cdb7-4f47-bdfd-15e3795298b8",
-      itemsId: 1
-    }
-  }).then(() => console.log('item created'))
-
-
+  prisma.images
+    .create({
+      data: {
+        image_url:
+          "https://firebasestorage.googleapis.com/v0/b/e-commerce-a9979.appspot.com/o/Macbook%2016%2Fvpavic_191118_3800_0122.jpg?alt=media&token=563ebe62-cdb7-4f47-bdfd-15e3795298b8",
+        itemsId: 1,
+      },
+    })
+    .then(() => console.log("item created"));
 
   // prisma.images.delete({where: {id: 10}}).then(() => console.log('image deleted'))
 
@@ -31,20 +34,36 @@ export const createNewItem = () => {
 };
 
 export const getAllItems = async (res: Response) => {
-  const items = await prisma.items.findMany({include: {images: true, carts: true}});
+  const items = await prisma.items.findMany({
+    include: { images: true, carts: true },
+  });
 
   return res.send(items);
 };
 
 export const getOneItem = async (requestId: number, res: Response) => {
-
   const item = await prisma.items.findUnique({
     where: {
       id: requestId,
-    }, include: {images: true, carts: true}
+    },
+    include: { images: true, carts: true },
   });
 
   return res.send(item);
+};
+
+export const getAllItemsFromList = async (items: any) => {
+  if (items) {
+    const allItems = await items?.map(async (item: any, index: number) => {
+      const newItem = await prisma.items.findFirst({
+        where: { id: item.itemId },
+      });
+
+      return newItem;
+    });
+
+    return Promise.all(allItems);
+  }
 };
 
 export const deleteAll = (res: any) => {

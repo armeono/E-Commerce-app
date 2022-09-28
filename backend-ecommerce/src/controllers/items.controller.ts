@@ -66,6 +66,19 @@ export const getAllItemsFromList = async (items: any) => {
   }
 };
 
+export const getSearchItems = async (searchTerm: String, res: Response) => {
+  const items = await prisma.items.findMany({
+    include: { images: true, carts: true },
+  });
+
+  let searchedItems = items?.map((item: any) => {
+    if (item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)
+      return item;
+  });
+
+  return res.send(searchedItems);
+};
+
 export const deleteAll = (res: any) => {
   prisma.items.deleteMany().then(() => res.send("deleted everything"));
 };

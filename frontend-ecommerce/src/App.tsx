@@ -20,7 +20,8 @@ function App() {
   const dispatch = useDispatch();
 
   const userID = useSelector((state: any) => state.id.uniqueID);
-
+  
+  console.log(userID)
   useEffect(() => {
     if (!userID) {
       let uniqueId: any = uuid();
@@ -39,9 +40,8 @@ function App() {
 
       dispatch(setID(newUniqueId));
 
-      setTimeout(() => {
-        dispatch(setID(null));
-      });
+
+    
     }
   }, []);
 

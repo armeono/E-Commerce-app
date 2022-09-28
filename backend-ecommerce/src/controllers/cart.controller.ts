@@ -11,13 +11,17 @@ export const getAllCartItems = async () => {
 };
 
 export const getAllCartItemsOfUser = async (id: number, res: Response) => {
-  const cartItems = await prisma.cart
-    .findMany({
-      where: {
-        userId: Number(id),
-      },
-    })
-    .then((items) => res.send(items));
+
+
+  if (id) {
+    const cartItems = await prisma.cart
+      .findMany({
+        where: {
+          userId: id,
+        },
+      })
+      .then((items) => res.send(items));
+  }
 };
 
 export const addItemToCart = (user: number, item: number) => {

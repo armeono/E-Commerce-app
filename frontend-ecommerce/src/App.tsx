@@ -21,7 +21,6 @@ function App() {
 
   const userID = useSelector((state: any) => state.id.uniqueID);
   
-  console.log(userID)
   useEffect(() => {
     if (!userID) {
       let uniqueId: any = uuid();

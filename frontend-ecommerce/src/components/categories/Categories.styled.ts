@@ -42,6 +42,7 @@ export const CirclesContainer = styled.div`
   bottom: 35px;
 
   width: 6%;
+
   margin: 0 auto;
   display: flex;
   flex-direction: row;

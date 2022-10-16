@@ -15,15 +15,26 @@ import ItemCard from "../../components/item-card/ItemCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllItems } from "../../services/ItemService";
 import { ItemType } from "../../types/Types";
-import { changeCartState } from "../../slices/CartSlice";
 import { useSelector } from "react-redux";
+import { useDebounce } from "../../util/useDebounce";
+import { getSearchResult } from "../../services/ItemService";
 
 interface HomeProps {}
 
 const Home: FunctionComponent<HomeProps> = () => {
+  const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
+
+  const debouncedValue = useDebounce(searchTerm, 500);
+
+  const { data: searchResults } = useQuery(["search"], () =>
+    getSearchResult(debouncedValue)
+  );
+
   const sortList = ["Price high", "Price low", "A > Z", "Z > A"];
 
-  const globalCart = useSelector((state: any) => state.CartSliceReducer.cartState)
+  const globalCart = useSelector(
+    (state: any) => state.CartSliceReducer.cartState
+  );
 
   const { data } = useQuery(["items"], getAllItems);
 
@@ -32,21 +43,21 @@ const Home: FunctionComponent<HomeProps> = () => {
   return (
     <HomeStyled notScrollable={globalCart}>
       <Header />
-      <HomeBody >
+      <HomeBody>
         <CategoriesContainer>
           <Categories />
         </CategoriesContainer>
         <InputsContainer>
-          <Search icon />
+          <Search icon value={searchTerm} setSearchTerm={setSearchTerm} />
           <FiltersContainer>
             <Filter placeholder="Filter" />
             <Filter placeholder="Sort by" options={sortList} />
           </FiltersContainer>
         </InputsContainer>
         <ItemsContainer>
-          {items?.map((item: ItemType) => (
-            <ItemCard item={item} />
-          ))}
+          {searchTerm !== "" &&
+            items?.map((item: ItemType) => <ItemCard item={item} />)}
+            
         </ItemsContainer>
       </HomeBody>
     </HomeStyled>

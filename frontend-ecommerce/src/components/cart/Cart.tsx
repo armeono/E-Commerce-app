@@ -47,9 +47,7 @@ const Cart: FunctionComponent<CartProps> = () => {
   };
 
   const goToCheckout = () => {
-
     navigate("/checkout");
-    
   };
 
   return (

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { CheckoutType } from "../types/Types";
-import { getOneItem } from "./ItemService";
 
 export const getAllItemsOfUsers = async (userID: number) => {
   const items = await axios.get(
@@ -44,3 +43,4 @@ export const OrderAndSendEmail = async (emailDetails: CheckoutType) => {
     })
     .then((res) => console.log(res));
 };
+

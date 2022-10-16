@@ -16,5 +16,5 @@ export const getOneItem = async (id: number) => {
 export const getSearchResult = async (searchTerm: string | undefined) => {
   const searchResults = await axios.get(`${process.env.REACT_APP_URL}/items/search/${searchTerm}`);
 
-  return searchResults;
+  return searchResults.data;
 }

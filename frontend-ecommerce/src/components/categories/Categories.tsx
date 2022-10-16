@@ -55,8 +55,8 @@ const Categories: FunctionComponent<CategoriesProps> = () => {
       <CategoryName>{currentCategory.name}</CategoryName>
 
       <CirclesContainer>
-        {categories.map((category) => (
-          <Circle current={category.name === currentCategory.name} />
+        {categories.map((category, index: number) => (
+          <Circle current={category.name === currentCategory.name} key={index} />
         ))}
       </CirclesContainer>
       {currentCategory.name !== "Keyboards" && (

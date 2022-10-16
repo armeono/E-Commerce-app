@@ -8,40 +8,34 @@ import {
   ItemPrice,
   ItemInfoContainer,
 } from "./ItemCard.styled";
-import AddItem from '../../assets/icons/AddItem.svg'
-import {ItemType} from '../../types/Types';
+import AddItem from "../../assets/icons/AddItem.svg";
+import { ItemType } from "../../types/Types";
 import { useNavigate } from "react-router-dom";
 
 interface ItemCardProps {
-  item: ItemType
+  item: ItemType;
 }
 
-const ItemCard: FunctionComponent<ItemCardProps> = ({item}) => {
-
+const ItemCard: FunctionComponent<ItemCardProps> = ({ item }) => {
   const navigate = useNavigate();
 
   const handleCardClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
 
-    navigate(`/item?id=${item.id}`)
-
-
-
-  }
-
-  
-
-
+    navigate(`/item?id=${item.id}`);
+  };
 
   return (
-    <ItemCardStyled onClick={(e: React.MouseEvent<HTMLElement>) => handleCardClick(e)}>
-      <CardImage src={item.images && item.images[0]?.image_url}/>
+    <ItemCardStyled
+      onClick={(e: React.MouseEvent<HTMLElement>) => handleCardClick(e)}
+    >
+      <CardImage src={item.images && item.images[0]?.image_url} />
       <CardContent>
         <ItemInfoContainer>
           <ItemName>{item.name}</ItemName>
           <ItemPrice>{item.price}$</ItemPrice>
         </ItemInfoContainer>
-        <CardPlusIcon src={AddItem}/>
+        <CardPlusIcon src={AddItem} />
       </CardContent>
     </ItemCardStyled>
   );

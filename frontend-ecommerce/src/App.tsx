@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Header from "./components/header/Header";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-import { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import ItemPage from "./pages/item-page/ItemPage";
 import { v4 as uuid } from "uuid";

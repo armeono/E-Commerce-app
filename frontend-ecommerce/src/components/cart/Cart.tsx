@@ -66,6 +66,7 @@ const Cart: FunctionComponent<CartProps> = () => {
               <CartItem
                 cartItem={item}
                 index={index}
+                key={index}
                 refetchItems={refetchItems}
               />
             ))}

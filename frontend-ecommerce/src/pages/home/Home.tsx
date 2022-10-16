@@ -30,6 +30,7 @@ const Home: FunctionComponent<HomeProps> = () => {
     getSearchResult(debouncedValue)
   );
 
+
   const sortList = ["Price high", "Price low", "A > Z", "Z > A"];
 
   const globalCart = useSelector(
@@ -55,9 +56,10 @@ const Home: FunctionComponent<HomeProps> = () => {
           </FiltersContainer>
         </InputsContainer>
         <ItemsContainer>
-          {searchTerm !== "" &&
-            items?.map((item: ItemType) => <ItemCard item={item} />)}
-            
+          {!searchTerm &&
+            items?.map((item: ItemType, index: number) => <ItemCard item={item} key={index} />)}
+
+            {searchTerm && searchResults?.map((item: ItemType, index: number))}
         </ItemsContainer>
       </HomeBody>
     </HomeStyled>

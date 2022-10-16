@@ -7,4 +7,4 @@ E-Commerce app created using React (TypeScript, StyledComponents) and Node.js (P
 
 ![Screenshot from 2022-10-17 01-09-46](https://user-images.githubusercontent.com/72741758/196062968-654c3806-5daf-4309-a0a6-bf7962515761.png)
 
-![Screenshot from 2022-10-17 01-10-10](https://user-images.githubusercontent.com/72741758/196062973-598e6cae-1ea6-41e1-b35e-2f8b52a0a165.png)
+![Screenshot from 2022-10-17 01-11-36](https://user-images.githubusercontent.com/72741758/196063012-74774995-06bd-4fd0-891b-6fb76520fb7c.png)

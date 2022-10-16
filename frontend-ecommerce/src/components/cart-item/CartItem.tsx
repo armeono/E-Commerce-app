@@ -14,7 +14,6 @@ import XIcon from "../../assets/icons/X.svg";
 import { CartItemType } from "../cart/Cart";
 import { useQuery } from "@tanstack/react-query";
 import { getOneItem } from "../../services/ItemService";
-import { ItemType } from "../../types/Types";
 import { removeItemFromCart } from "../../services/CartService";
 import { queryClient } from "../../queryClient";
 import { useMutation } from "@tanstack/react-query";

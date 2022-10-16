@@ -30,6 +30,7 @@ const Home: FunctionComponent<HomeProps> = () => {
     getSearchResult(debouncedValue)
   );
 
+  console.log(searchResults)
 
   const sortList = ["Price high", "Price low", "A > Z", "Z > A"];
 
@@ -57,9 +58,14 @@ const Home: FunctionComponent<HomeProps> = () => {
         </InputsContainer>
         <ItemsContainer>
           {!searchTerm &&
-            items?.map((item: ItemType, index: number) => <ItemCard item={item} key={index} />)}
+            items?.map((item: ItemType, index: number) => (
+              <ItemCard item={item} key={index} />
+            ))}
 
-            {searchTerm && searchResults?.map((item: ItemType, index: number))}
+          {debouncedValue &&
+            searchResults.data?.map((item: ItemType, index: number) => 
+              item !== null && <h1>items</h1>
+            )}
         </ItemsContainer>
       </HomeBody>
     </HomeStyled>

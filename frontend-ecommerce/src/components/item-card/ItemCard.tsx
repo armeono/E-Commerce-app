@@ -29,11 +29,11 @@ const ItemCard: FunctionComponent<ItemCardProps> = ({ item }) => {
     <ItemCardStyled
       onClick={(e: React.MouseEvent<HTMLElement>) => handleCardClick(e)}
     >
-      <CardImage src={item.images && item.images[0]?.image_url} />
+      <CardImage src={item && item.images && item.images[0]?.image_url} />
       <CardContent>
         <ItemInfoContainer>
-          <ItemName>{item.name}</ItemName>
-          <ItemPrice>{item.price}$</ItemPrice>
+          <ItemName>{item && item.name}</ItemName>
+          <ItemPrice>{item && item.price}$</ItemPrice>
         </ItemInfoContainer>
         <CardPlusIcon src={AddItem} />
       </CardContent>
